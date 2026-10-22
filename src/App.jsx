@@ -131,7 +131,7 @@ function App() {
             </a>
             <a
               className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 text-sm font-medium text-white/85 backdrop-blur transition hover:border-white/30 hover:bg-white/[0.09]"
-              href="mailto:hello@ian.dev"
+              href="#contact"
               id="contact"
             >
               Get in Touch
@@ -141,7 +141,7 @@ function App() {
 
           <div className="mt-12 flex items-center gap-3 text-xs text-white/40">
             <span className="h-px w-8 bg-white/20" />
-            Based in Uganda <span className="text-white/20">·</span> Building for everywhere
+            Thoughtful by design <span className="text-white/20">·</span> Engineered to scale
           </div>
         </div>
 
