@@ -1,3 +1,5 @@
+import portrait from "./assets/ian-portrait.png";
+
 const projects = [
   {
     number: "01",
@@ -186,6 +188,13 @@ function App() {
               <br />
               <em>the whole picture in mind.</em>
             </h2>
+            <figure className="about-portrait">
+              <img
+                alt="Portrait of Ian Akampurira."
+                className="about-portrait__image"
+                src={portrait}
+              />
+            </figure>
           </div>
           <div className="about-section__body">
             <p>
