@@ -234,12 +234,33 @@ function App() {
             </h2>
             <a
               className="button button--light"
-              href="https://github.com/Akampurira-Ian"
-              rel="noreferrer"
-              target="_blank"
+              href="mailto:eionakampurira@gmail.com"
             >
-              Find me on GitHub <ArrowIcon diagonal />
+              Email me <ArrowIcon diagonal />
             </a>
+          </div>
+          <div aria-label="Contact details" className="contact-details">
+            <div className="contact-detail">
+              <span className="contact-detail__label">Email</span>
+              <a href="mailto:eionakampurira@gmail.com">
+                eionakampurira@gmail.com
+              </a>
+            </div>
+            <div className="contact-detail">
+              <span className="contact-detail__label">Phone</span>
+              <a href="tel:+256771895345">+256 771 895 345</a>
+              <a href="tel:+256759569159">+256 759 569 159</a>
+            </div>
+            <div className="contact-detail">
+              <span className="contact-detail__label">LinkedIn</span>
+              <a
+                href="https://www.linkedin.com/in/ian-akampurira-b69675413/"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Connect with me <ArrowIcon diagonal />
+              </a>
+            </div>
           </div>
         </section>
       </main>
