@@ -1,194 +1,254 @@
-const technologies = [
-  { name: 'React', mark: 'R', color: 'text-cyan-300', position: 'left-2 top-16' },
-  { name: 'Python', mark: 'Py', color: 'text-yellow-200', position: 'right-0 top-8' },
-  { name: 'Flutter', mark: 'F', color: 'text-sky-300', position: 'bottom-24 left-0' },
-  { name: 'PostgreSQL', mark: '◉', color: 'text-indigo-300', position: 'bottom-10 right-2' },
-]
+const projects = [
+  {
+    number: "01",
+    name: "uniPulse",
+    type: "Campus platform · Team contribution",
+    description:
+      "A campus platform taking shape around university information, communities, events, and academic planning. I contributed to its backend foundations, including the data model, database migrations, and migration testing.",
+    technologies: ["Python", "FastAPI", "PostgreSQL", "Alembic"],
+    href: "https://github.com/abarintuma/uniPulse",
+    linkLabel: "View uniPulse on GitHub",
+    className: "project-card--pulse",
+  },
+  {
+    number: "02",
+    name: "Student Attendance System",
+    type: "Education · Team contribution",
+    description:
+      "A role-based attendance system for in-person lectures. I worked across responsive student and coordinator experiences, connected frontend flows to the API, and contributed session handling and analytics exports.",
+    technologies: ["React", "FastAPI", "QR check-in", "Geolocation"],
+    href: "https://github.com/abarintuma/student-attendance-system",
+    linkLabel: "View the attendance system on GitHub",
+    className: "project-card--attendance",
+  },
+];
 
 function ArrowIcon({ diagonal = false }) {
   return (
-    <svg
-      aria-hidden="true"
-      className="h-4 w-4"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
+    <svg aria-hidden="true" fill="none" viewBox="0 0 20 20">
       {diagonal ? (
         <path
-          d="M7 17 17 7M7 7h10v10"
+          d="M5.5 14.5 14 6m-7.5 0H14v7.5"
           stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeWidth="1.7"
+          strokeWidth="1.5"
         />
       ) : (
         <path
-          d="M4 12h15m-6-6 6 6-6 6"
+          d="M3.5 10h12m-4.5-4.5 4.5 4.5-4.5 4.5"
           stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeWidth="1.7"
+          strokeWidth="1.5"
         />
       )}
     </svg>
-  )
+  );
+}
+
+function ProjectCard({ project }) {
+  return (
+    <article className={`project-card ${project.className}`}>
+      <div className="project-card__topline">
+        <span className="project-card__number">{project.number}</span>
+        <span className="project-card__type">{project.type}</span>
+      </div>
+
+      <div className="project-card__content">
+        <h3>{project.name}</h3>
+        <p>{project.description}</p>
+        <ul aria-label={`${project.name} technologies`} className="tag-list">
+          {project.technologies.map((technology) => (
+            <li key={technology}>{technology}</li>
+          ))}
+        </ul>
+      </div>
+
+      <a
+        aria-label={project.linkLabel}
+        className="project-card__link"
+        href={project.href}
+        rel="noreferrer"
+        target="_blank"
+      >
+        <span>Explore the project</span>
+        <ArrowIcon diagonal />
+      </a>
+    </article>
+  );
 }
 
 function App() {
   return (
-    <main
-      className="relative isolate min-h-screen overflow-hidden bg-[#080a0f] text-white"
-      id="home"
-    >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
-      >
-        <div className="absolute -left-48 top-20 h-[30rem] w-[30rem] rounded-full bg-violet-700/20 blur-[130px]" />
-        <div className="absolute -right-40 top-48 h-[34rem] w-[34rem] rounded-full bg-cyan-500/10 blur-[140px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_88%)]" />
-      </div>
-
-      <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 pt-5 sm:px-8 lg:px-12">
-        <a
-          aria-label="Ian.dev home"
-          className="group inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2.5 shadow-lg shadow-black/10 backdrop-blur-xl transition hover:border-white/20"
-          href="#home"
-        >
-          <span className="grid h-6 w-6 place-items-center rounded-full bg-gradient-to-br from-violet-400 to-cyan-300 text-[11px] font-black text-[#11111a]">
-            i
+    <div className="site-shell" id="home">
+      <header className="site-header page-wrap">
+        <a aria-label="Ian Akampurira, home" className="wordmark" href="#home">
+          <span aria-hidden="true" className="wordmark__mark">
+            IA
           </span>
-          <span className="text-sm font-semibold tracking-tight">
-            Ian<span className="text-white/45">.dev</span>
-          </span>
+          <span>Ian Akampurira</span>
         </a>
 
-        <nav
-          aria-label="Main navigation"
-          className="flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.055] p-1.5 shadow-lg shadow-black/10 backdrop-blur-xl sm:gap-2"
-        >
-          {[
-            { label: 'Home', href: '#home' },
-            { label: 'Projects', href: '#projects' },
-            { label: 'Contact', href: '#contact' },
-          ].map((link) => (
-            <a
-              className={`rounded-full px-3 py-2 text-xs transition hover:bg-white/10 hover:text-white sm:px-4 sm:text-sm ${
-                link.label === 'Home'
-                  ? 'bg-white/10 text-white'
-                  : 'text-white/65'
-              }`}
-              href={link.href}
-              key={link.label}
-            >
-              {link.label}
-            </a>
-          ))}
+        <nav aria-label="Main navigation" className="site-nav">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a className="site-nav__contact" href="#contact">
+            Get in touch <ArrowIcon diagonal />
+          </a>
         </nav>
       </header>
 
-      <section
-        aria-labelledby="hero-title"
-        className="mx-auto grid min-h-[calc(100svh-5rem)] w-full max-w-7xl items-center gap-10 px-5 pb-12 pt-16 sm:px-8 sm:pt-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-4 lg:px-12 lg:pb-20 lg:pt-10"
-      >
-        <div className="relative z-10 max-w-2xl">
-          <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-emerald-300/15 bg-emerald-300/[0.06] px-3.5 py-2 text-xs font-medium tracking-wide text-emerald-100/80">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-50" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-300" />
-            </span>
-            OPEN TO EXCITING OPPORTUNITIES
-          </div>
-
-          <p className="mb-4 text-sm font-medium tracking-[0.22em] text-white/45 uppercase">
-            Software Engineer <span className="text-violet-300">/</span> Full-Stack Developer
-          </p>
-          <h1
-            className="text-[clamp(3.5rem,10vw,7.25rem)] leading-[0.91] font-semibold tracking-[-0.075em]"
-            id="hero-title"
-          >
-            Akampurira
-            <br />
-            <span className="bg-gradient-to-r from-white via-white to-white/55 bg-clip-text text-transparent">
-              Ian<span className="text-violet-300">.</span>
-            </span>
-          </h1>
-
-          <p className="mt-7 max-w-lg text-base leading-7 text-white/55 sm:text-lg sm:leading-8">
-            I design and build thoughtful digital experiences, turning complex
-            ideas into fast, reliable products for the web and beyond.
-          </p>
-
-          <div className="mt-9 flex flex-wrap items-center gap-3">
-            <a
-              className="group inline-flex min-h-12 items-center gap-3 rounded-full bg-white px-5 text-sm font-semibold text-[#11121a] transition hover:-translate-y-0.5 hover:bg-violet-100"
-              href="#projects"
-            >
-              View My Work
-              <span className="transition-transform group-hover:translate-x-1">
-                <ArrowIcon />
-              </span>
-            </a>
-            <a
-              className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 text-sm font-medium text-white/85 backdrop-blur transition hover:border-white/30 hover:bg-white/[0.09]"
-              href="#contact"
-              id="contact"
-            >
-              Get in Touch
-              <ArrowIcon diagonal />
-            </a>
-          </div>
-
-          <div className="mt-12 flex items-center gap-3 text-xs text-white/40">
-            <span className="h-px w-8 bg-white/20" />
-            Thoughtful by design <span className="text-white/20">·</span> Engineered to scale
-          </div>
-        </div>
-
-        <div
-          aria-label="Technologies: React, Python, Flutter, and PostgreSQL"
-          className="relative mx-auto flex aspect-square w-full max-w-[34rem] items-center justify-center"
-          id="projects"
-          role="img"
-        >
-          <div className="absolute inset-[9%] rounded-full border border-white/[0.07]" />
-          <div className="absolute inset-[20%] rounded-full border border-dashed border-white/[0.09]" />
-          <div className="absolute inset-[31%] rounded-full border border-white/[0.06]" />
-          <div className="absolute h-[72%] w-[72%] rounded-full bg-gradient-to-br from-violet-500/15 via-transparent to-cyan-400/10 blur-2xl" />
-
-          <div className="relative grid h-[44%] w-[44%] place-items-center rounded-full border border-white/15 bg-[#11131c]/75 shadow-[0_0_100px_rgba(139,92,246,0.18)] backdrop-blur-2xl">
-            <div className="absolute inset-2 rounded-full border border-white/[0.06]" />
-            <div className="relative grid h-28 w-28 place-items-center rounded-full bg-gradient-to-br from-violet-500/20 via-[#171522] to-cyan-400/20 sm:h-36 sm:w-36">
-              <span className="bg-gradient-to-br from-white via-violet-100 to-cyan-200 bg-clip-text text-6xl font-semibold tracking-[-0.09em] text-transparent sm:text-7xl">
-                AI
-              </span>
-              <span className="absolute bottom-5 h-1 w-8 rounded-full bg-gradient-to-r from-violet-400 to-cyan-300 blur-[1px]" />
-            </div>
-          </div>
-
-          {technologies.map((technology) => (
-            <div
-              className={`absolute ${technology.position} flex items-center gap-2.5 rounded-2xl border border-white/10 bg-[#12141d]/80 px-3.5 py-3 shadow-2xl shadow-black/30 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-white/20 sm:px-4`}
-              key={technology.name}
-            >
-              <span
-                className={`grid h-8 w-8 place-items-center rounded-xl bg-white/[0.07] text-sm font-bold ${technology.color}`}
+      <main>
+        <section aria-labelledby="hero-title" className="hero page-wrap">
+          <div className="hero__copy">
+            <p className="eyebrow">
+              <span aria-hidden="true" className="eyebrow__dot" />
+              Software engineer <span aria-hidden="true">/</span> Full-stack
+              developer
+            </p>
+            <h1 id="hero-title">
+              Thoughtful software,
+              <br />
+              <em>built with care.</em>
+            </h1>
+            <p className="hero__intro">
+              I’m Ian, a software engineer who enjoys building useful,
+              dependable products—from the data model to the details people see.
+            </p>
+            <div className="hero__actions">
+              <a className="button button--primary" href="#work">
+                See selected work <ArrowIcon />
+              </a>
+              <a
+                className="button button--quiet"
+                href="https://github.com/Akampurira-Ian"
+                rel="noreferrer"
+                target="_blank"
               >
-                {technology.mark}
-              </span>
-              <span className="text-xs font-medium text-white/80 sm:text-sm">
-                {technology.name}
-              </span>
+                GitHub <ArrowIcon diagonal />
+              </a>
             </div>
-          ))}
+          </div>
 
-          <div className="absolute left-[18%] top-[25%] h-1.5 w-1.5 rounded-full bg-violet-300 shadow-[0_0_14px_rgba(196,181,253,0.9)]" />
-          <div className="absolute right-[16%] top-[38%] h-1 w-1 rounded-full bg-cyan-200 shadow-[0_0_12px_rgba(165,243,252,0.9)]" />
-          <div className="absolute bottom-[24%] left-[30%] h-1 w-1 rounded-full bg-white/70 shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-        </div>
-      </section>
-    </main>
-  )
+          <div aria-hidden="true" className="hero__note">
+            <span className="hero__note-rule" />
+            <p>
+              Good work starts
+              <br />
+              with paying attention.
+            </p>
+          </div>
+          <a
+            aria-label="Scroll to selected work"
+            className="scroll-cue"
+            href="#work"
+          >
+            <span />
+          </a>
+        </section>
+
+        <section
+          aria-labelledby="work-title"
+          className="work-section page-wrap section-rule"
+          id="work"
+        >
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow section-heading__eyebrow">
+                A few things I’ve helped build
+              </p>
+              <h2 id="work-title">
+                Selected <em>work</em>
+              </h2>
+            </div>
+            <p className="section-heading__aside">
+              Real projects, built with other people.
+            </p>
+          </div>
+
+          <div className="project-grid">
+            {projects.map((project) => (
+              <ProjectCard key={project.number} project={project} />
+            ))}
+          </div>
+        </section>
+
+        <section
+          aria-labelledby="about-title"
+          className="about-section page-wrap section-rule"
+          id="about"
+        >
+          <div className="about-section__heading">
+            <p className="eyebrow">A little about me</p>
+            <h2 id="about-title">
+              Engineering with
+              <br />
+              <em>the whole picture in mind.</em>
+            </h2>
+          </div>
+          <div className="about-section__body">
+            <p>
+              I like working across the stack and understanding how the pieces
+              fit together. On the projects here, that has meant helping shape
+              backend foundations as well as building practical, responsive
+              interfaces.
+            </p>
+            <p>
+              I care about clear systems, useful details, and making software
+              feel straightforward for the people who rely on it.
+            </p>
+            <div className="skills">
+              <p className="skills__label">Tools I’ve worked with</p>
+              <ul className="tag-list">
+                {["React", "Python", "FastAPI", "PostgreSQL", "Alembic"].map(
+                  (technology) => (
+                    <li key={technology}>{technology}</li>
+                  ),
+                )}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section
+          aria-labelledby="contact-title"
+          className="contact-section page-wrap"
+          id="contact"
+        >
+          <p className="eyebrow">Have a good one in mind?</p>
+          <div className="contact-section__content">
+            <h2 id="contact-title">
+              Let’s make
+              <br />
+              something <em>useful.</em>
+            </h2>
+            <a
+              className="button button--light"
+              href="https://github.com/Akampurira-Ian"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Find me on GitHub <ArrowIcon diagonal />
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer className="site-footer page-wrap">
+        <a className="wordmark wordmark--footer" href="#home">
+          <span aria-hidden="true" className="wordmark__mark">
+            IA
+          </span>
+          <span>Ian Akampurira</span>
+        </a>
+        <p>Made with care, from top to bottom.</p>
+        <a className="back-to-top" href="#home">
+          Back to top <ArrowIcon diagonal />
+        </a>
+      </footer>
+    </div>
+  );
 }
 
-export default App
+export default App;
